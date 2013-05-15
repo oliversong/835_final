@@ -1,12 +1,10 @@
-% CLASSIFY_NN: nearest neighbor classifier. Returns the label index of the
-% nearest neighbor to the test gesture in the training set.
+% CLASSIFY_NN: nearest neighbor classifier. Returns the label of the
+% nearest neighbor
 
 function [label] = classify_nn(test, train) 
-    % test is a DxN matrix of a single gesture, where D is the number of
-    % body segments and N is the number of frames
-    % train is a training set containing test gestures in the form of the
-    % gesture array.
-    % I have to use euclidean distance, or (sqrt(sum(xi-yi)**2)) between
+    % test is a single gesture (array)
+    % train is a training set (e.g. 4 of every gesture type)
+    % Gotta use euclidean distance, but we're talking about  between
     % every point in the test matrix and every point in every gesture
     % matrix and find the gesture that has the smallest distance, then
     % return it.
