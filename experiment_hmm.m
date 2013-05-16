@@ -5,7 +5,7 @@ function [model, accuracy] = experiment_hmm(data, ratio, h, g)
         h = 6;
     end
     if ~exist('g','var'),
-        g = 3;
+        h = 3;
     end
     
     % Set HMM params
@@ -22,11 +22,33 @@ function [model, accuracy] = experiment_hmm(data, ratio, h, g)
     model = trainHMM( split.seqs_train, split.labels_train, params);
     
     % Test model
-    Ystar = testHMM( model, split.seqs_test );
+    [Ystar, ll] = testHMM( model, split.seqs_test );
     Ytrue = cellfun(@(x) mode(x), split.labels_test);
     accuracy = sum(Ystar==Ytrue)/numel(Ytrue);
         
     fprintf('HMM: nbHiddenStates=%d, nbGaussMixtures=%d, accuracy=%f\n', ...
         params.nbHiddenStates,params.nbGaussMixtures,accuracy);
     
+    confmat = build_confmat(Ystar,Ytrue);
+    plot_confmat(confmat)
+    
+end
+
+function [ split ] = get_split_hmm( data, ratio )
+    split.seqs_train={}; split.labels_train={};
+    split.seqs_test={};  split.labels_test={};
+    
+    [train,test] = split_data(data,ratio);
+    for i=1:numel(train),
+        for j=1:numel(train{i}),
+            split.seqs_train{end+1} = train{i}{j};
+            split.labels_train{end+1} = zeros(1,size(train{i}{j},2)) + i;
+        end
+    end
+    for i=1:numel(test),
+        for j=1:numel(test{i}),
+            split.seqs_test{end+1} = test{i}{j};
+            split.labels_test{end+1} = zeros(1,size(test{i}{j},2)) + i;
+        end
+    end
 end
