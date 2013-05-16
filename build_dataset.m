@@ -1,7 +1,7 @@
 function [scratch_data] = build_dataset()
     num_gestures = 10;
-    gesture_types = {'triangle','square','loop','X','oslash','zigzag'};
-    recObj = audiorecorder(4000,8,1);
+    gesture_types = {'triangle','square','loop','X','zigzag'};
+    recObj = audiorecorder;
     record_length = 2;
     
     % builds the dataset.

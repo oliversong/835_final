@@ -10,17 +10,25 @@ function [enveloped] = envelope(data)
     hold on
     plot(enveloped{1}{1},'r')
     hold off
-    figure,plot(data{2}{4})
+    figure,plot(data{2}{1})
     hold on
-    plot(enveloped{2}{4},'r')
+    plot(enveloped{2}{1},'r')
     hold off
-    figure,plot(data{7}{3})
+    figure,plot(data{3}{1})
     hold on
-    plot(enveloped{7}{3},'r')
+    plot(enveloped{3}{1},'r')
     hold off
-    figure,plot(data{4}{3})
+    figure,plot(data{4}{1})
     hold on
-    plot(enveloped{4}{3},'r')
+    plot(enveloped{4}{1},'r')
+    hold off
+    figure,plot(data{5}{1})
+    hold on
+    plot(enveloped{5}{1},'r')
+    hold off
+    figure,plot(data{6}{1})
+    hold on
+    plot(enveloped{6}{1},'r')
     hold off
 end
 
