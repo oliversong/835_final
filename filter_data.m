@@ -32,8 +32,8 @@ function [filtered_data] = filter_data(scratch_data)
         for j=1:numel(scratch_data{i}.data)
             current = scratch_data{i}.data{j};
             % trim data of small values left and right
-            i1 = find(current>0.09, 1, 'first');
-            i2 = find(current>0.09, 1, 'last');
+            i1 = find(current>0.01, 1, 'first');
+            i2 = find(current>0.01, 1, 'last');
             segment = current(i1:i2);
             % apply a gaussian filter
 %             sigma = 1;

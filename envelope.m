@@ -1,6 +1,6 @@
 function [enveloped] = envelope(data)
     enveloped = data;
-    b = fir1(1000, 1/8000);
+    b = fir1(700, 1/8000);
     for i=1:numel(data)
         for j=1:numel(data{i})
             enveloped{i}{j} = 3*filter(b,1,data{i}{j});
@@ -41,3 +41,11 @@ end
 % use 8000 dataset it is better
 
 % USE A BETTER ENVELOPE FUNCTION (!)
+
+% Holy crap using a screw driver is much better, I don't have to boost by
+% 30DB
+
+% I have much better data now...so maybe I can do better than 37% acc
+
+% One concern is that envelope cuts off the last bit of data...why? can I
+% avoid this?
