@@ -6,6 +6,12 @@ function [enveloped] = envelope(data)
             enveloped{i}{j} = 3*filter(b,1,data{i}{j});
         end
     end
+    for i=1:numel(enveloped)
+        for j=1:numel(enveloped{i})
+            enveloped{i}{j} = enveloped{i}{j} / norm(enveloped{i}{j},2);
+        end
+    end
+    
     figure,plot(data{1}{1})
     hold on
     plot(enveloped{1}{1},'r')
